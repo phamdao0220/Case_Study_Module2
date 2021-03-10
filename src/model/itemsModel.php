@@ -33,6 +33,8 @@ class itemsModel
 
     public function addItems($items_code, $product_name, $product_price, $note, $img)
     {
+//        var_dump($img);
+//        die();
 
         $sql = 'INSERT INTO Items (`items_code`,`product_name`,`product_price`,`note`,`img`)
                 VALUES(:items_code,:product_name,:product_price,:note,:img)';
