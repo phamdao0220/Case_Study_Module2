@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lananh
- * Date: 2021-03-04
- * Time: 10:42
- */
 
 namespace App\model;
 
@@ -23,7 +17,6 @@ class itemsModel
     public function findById($id)
     {
         $sql = "Select * FROM v_items WHERE id =:id";
-        //$sql = "Select * from orders where orderNumber = :orderNumber ";
         $stmt = $this->database->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -41,7 +34,6 @@ class itemsModel
     public function addItems($items_code, $product_name, $product_price, $note, $img)
     {
 
-//        var_dump($img);
         $sql = 'INSERT INTO Items (`items_code`,`product_name`,`product_price`,`note`,`img`)
                 VALUES(:items_code,:product_name,:product_price,:note,:img)';
 
@@ -77,4 +69,13 @@ class itemsModel
         $stmt->bindParam(':img', $img);
         $stmt->execute();
     }
+
+    public function find($search)
+    {
+        $sql = "SELECT * FROM v_items WHERE items_code LIKE '$search'or  product_name LIKE '$search'";
+        $stmt = $this->database->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }
