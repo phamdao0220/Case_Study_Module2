@@ -1,37 +1,120 @@
 <?php
-session_start();
-$username = $_POST['name'] ?? '';
-$password = $_POST['pass'] ?? '';
-if ($username == 'admin' && $password == '123') {
-    $_SESSION['user'] = $username;
-    header("Location: index.php");
-} else {
-    require_once"login.php";
+if ($_SERVER['REQUEST_METHOD']=='POST'){
+    $user="admin";
+    $pass="123456";
+    if (!empty($_POST['username']) && !empty($_POST['password'])
+        && $_POST['username']==$user && $_POST['password']==$pass){
+        $_SESSION['username']=$_POST['username'];
+        $_SESSION['password']=$_POST['password'];
+        header('location:index.php?page=index.php');
+    } else  {
+        echo 'Wrong Password. Please try again';
+    }
 }
 ?>
-            <form action="login.php" class="login100-form validate-form"  method="post" >
-					<span class="login100-form-title p-b-33">
-						Account Login
-					</span>
-                ​
-                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="name" placeholder="Name">
-                    <span class="focus-input100-1"></span>
-                    <span class="focus-input100-2"></span>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<style>
+    body {
+        font-family: "Lato", sans-serif;
+    }
+
+
+
+    .main-head{
+        height: 150px;
+        background: #FFF;
+
+    }
+
+    .sidenav {
+        height: 100%;
+        background-color: #000;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+
+    .main {
+        padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+    }
+
+    @media screen and (max-width: 450px) {
+        .login-form{
+            margin-top: 10%;
+        }
+
+        .register-form{
+            margin-top: 10%;
+        }
+    }
+
+    @media screen and (min-width: 768px){
+        .main{
+            margin-left: 40%;
+        }
+
+        .sidenav{
+            width: 40%;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+
+        .login-form{
+            margin-top: 80%;
+        }
+
+        .register-form{
+            margin-top: 20%;
+        }
+    }
+
+
+    .login-main-text{
+        margin-top: 20%;
+        padding: 60px;
+        color: #fff;
+    }
+
+    .login-main-text h2{
+        font-weight: 300;
+    }
+
+    .btn-black{
+        background-color: #000 !important;
+        color: #fff;
+    }
+</style>
+
+<div class="sidenav">
+    <div class="login-main-text">
+        <h2>Application<br> Login Page</h2>
+        <p>Login or register from here to access.</p>
+    </div>
+</div>
+<div class="main">
+    <div class="col-md-6 col-sm-12">
+        <div class="login-form">
+            <form method="post" action="index.php?page=list-library">
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" class="form-control" placeholder="User Name">
                 </div>
-                ​
-                <div class="wrap-input100 rs1 validate-input" data-validate="Password is required">
-                    <input class="input100" type="password" name="pass" placeholder="Password">
-                    <span class="focus-input100-1"></span>
-                    <span class="focus-input100-2"></span>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" placeholder="Password">
                 </div>
-                <div></div>
-                ​
-                <div class="container-login100-form-btn m-t-20">
-                    <button type="submit" class="login100-form-btn">
-                        LOGIN
-                    </button>
-                </div>
-                ​
-                ​
+                <button type="submit" class="btn btn-black">Login</button>
+                <button type="submit" class="btn btn-secondary">Register</button>
             </form>
+        </div>
+    </div>
+</div>

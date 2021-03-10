@@ -23,10 +23,17 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <a class="navbar-brand" href="index.php?page=invoice_details">Danh sách hoá đơn </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,15 +56,20 @@
         </div>
     </div>
 </nav>
+<!--<a href="index.php?page=invoice_details"> </a>-->
 
 <?php
 ob_start();
 
 use App\Controller\itemsController;
+use App\Controller\invoiceDetailsController;
+use App\Controller\productController;
 
 require __DIR__ . '/vendor/autoload.php';
 $page = isset($_GET['page']) ? $_REQUEST['page'] : '';
 $itemsController = new ItemsController();
+$invoiceDetailsController=new InvoiceDetailsController();
+$productController=new ProductController();
 
 ?>
 
@@ -77,6 +89,12 @@ switch ($page) {
         break;
     case 'search':
         $itemsController->search();
+        break;
+    case 'invoice_details':
+        $invoiceDetailsController->show();
+        break;
+    case 'product':
+        $productController->show();
         break;
 }
 ob_end_flush();

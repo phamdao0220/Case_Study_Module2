@@ -1,6 +1,7 @@
 
 <form method="post" enctype="multipart/form-data">
     <?php foreach ($items as $key => $item) ?>
+    <div class="card" style="width: 50rem;top: 20px;">
     <div class="input-group mb-3">
         <span id="basic-addon1"></span>
         <input class="form-control" type="hidden" name="id" value="<?php echo $item['id'] ?>">
@@ -23,16 +24,18 @@
         <input class="form-control" type="text" name="note" value="<?php echo $item['note'] ?>">
     </div>
     <div class="form-label">
-        <span for="formFileLg" class="form-label">Ảnh </span>
-        <input class="form-control form-control-lg" type="file" name="my-file">
+        <span for="formFileMultiple" class="form-label">Ảnh </span>
+        <input class="form-control" type="file" name="my-file">
         <div><img style="width: 100px" src="img/<?php echo $item['img'] ?>"></div>
         <input type="hidden" name="old_img" value="<?php echo $item['img'] ?>">
 
+    </div >
     </div>
+<div style="margin-top: 20px">
     <button class="btn btn-outline-warning" type="submit">Sửa</button>
     <button class="btn btn-outline-secondary" onclick="window.history.go(-1); return false;" type="submit">Huỷ</button>
+</div>
 
-    </div>
 
 </form>
 

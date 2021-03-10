@@ -5,7 +5,7 @@
             <th>Mã sản phẩm</th>
             <th>Tên sản phẩm</th>
             <th>Giá sản phẩm</th>
-            <th>Ghi chú</th>
+            <th>Chi tiết sản phẩm</th>
             <th>Ảnh</th>
             <th colspan="2"> Chức năng</th>
         </tr>
@@ -14,13 +14,12 @@
                 <td class="text-center"><?php echo $key + 1 ?></td>
                 <td>
                     <?php echo $item['items_code'] ?>
-                    <!--                        <a href="index.php?page=product-details&id=-->
-                    <?php //echo $item['id'] ?><!--"></a>-->
+
                 </td>
                 <td><?php echo $item['product_name'] ?></td>
                 <td><?php echo $item['product_price'] ?></td>
-                <td><?php echo $item['note'] ?></td>
-                <td><img style="width: 100px" src="img/<?php echo $item['img'] ?>"></td>
+                <td><a href="index.php?page=product&id=<?php echo $item['id'] ?>"><?php echo $item['note'] ?></a></td>
+                <td><img style="width: 50px" src="img/<?php echo $item['img'] ?>"></td>
                 <td>
                     <a onclick="return confirm('Bạn có muốn xoá <?php echo $item["product_name"] ?> không ')""
                     href="index.php?page=delete&id=<?php echo $item['id'] ?>" class="btn btn-outline-danger
@@ -36,3 +35,4 @@
 </div>
 
 </table>
+
