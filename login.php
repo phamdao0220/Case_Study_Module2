@@ -6,12 +6,14 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
         && $_POST['username']==$user && $_POST['password']==$pass){
         $_SESSION['username']=$_POST['username'];
         $_SESSION['password']=$_POST['password'];
-        header('location:index.php?page=index.php');
+        header('location:home.php');
     } else  {
         echo 'Wrong Password. Please try again';
     }
 }
+
 ?>
+<a class="navbar-brand" href="home.php">Trang chủ </a>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -103,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
 <div class="main">
     <div class="col-md-6 col-sm-12">
         <div class="login-form">
-            <form method="post" action="index.php?page=list-library">
+            <form method="post" action="home.php">
                 <div class="form-group">
                     <label>User Name</label>
                     <input type="text" class="form-control" placeholder="User Name">

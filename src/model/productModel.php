@@ -35,4 +35,21 @@ class productModel
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function addItems($name, $product_type, $origin, $img)
+    {
+//        var_dump($img);
+//        die();
+
+        $sql = 'INSERT INTO Product_details (`name`,`product_type`,`origin`,`img`)
+                VALUES(:name,:product_type,:origin,:img)';
+
+        $stmt = $this->database->prepare($sql);
+        $stmt->bindParam(":items_code", $name);
+        $stmt->bindParam(":product_name", $product_type);
+        $stmt->bindParam(":product_price", $origin);
+        $stmt->bindParam(":img", $img);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
